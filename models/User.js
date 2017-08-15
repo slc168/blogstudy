@@ -11,7 +11,7 @@ User.getByUsername=function(username,callback){
         if(err){
             return callback(err,null);
         }
-        callback(null,result);
+        callback(null,result[0]);
     })
 };
 User.prototype.save=function(callback){
@@ -22,4 +22,23 @@ User.prototype.save=function(callback){
         callback(null,result);
     })
 };
+
+
+User.getById=function(id,callback){
+    db.query("select * from users where id=?",[id],function(err,result){
+        if(err){
+            return callback(err,null);
+        }
+        callback(null,result);
+    })
+};
+User.updateAvatarById=function(avatar,id,callback){
+    db.query("update users set avatar=? where id=?",[avatar,id],function(err,result){
+        if(err){
+            return callback(err,null);
+        }
+        callback(null,result);
+    })
+};
+
 module.exports=User;

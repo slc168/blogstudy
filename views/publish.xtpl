@@ -153,13 +153,13 @@
     // append 表示添加一个 要发送的 字段名：值
     // 文件必须通过 获取文件元素，通过文件元素的 files[0]  获取该文件的二进制数据
     formData.append('pic', document.querySelector('#pic_file').files[0]);
-
+    formData.append('foo', 'bar');
     // 1. 新建一个xhr对象
     var xhr = new XMLHttpRequest();
 
     // 2. 配置请求
     xhr.open('post', '/article/upload');
-
+ console.log(formData);
     // 3. 设置成功之后的回调函数
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {

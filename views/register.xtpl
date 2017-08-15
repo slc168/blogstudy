@@ -60,7 +60,7 @@
 <script>
 
   var $form = $('#register_form');
-
+  console.log($form);
   $form.on('submit', function (e) {
     // 当提交表单的时候，把表单的默认同步提交事件干掉
     e.preventDefault();
@@ -68,7 +68,7 @@
     // 下面写自己的异步业务逻辑代码
     var url = $(this).attr('action');
     var method = $(this).attr('method');
-
+    console.log(1);
     $.ajax({
       url: url,
       type: method,
@@ -84,7 +84,7 @@
         }
       },
       error: function () {
-        alert('注册失败，请重试'); // 你们不要alert
+       alert('注册失败，请重试'); // 你们不要alert
       }
     });
 

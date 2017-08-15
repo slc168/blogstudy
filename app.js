@@ -11,13 +11,13 @@ const app=express();
 
 //配置静态文件服务中间件
 app.use("/www",express.static("www"));
-app.use('/uploads',express.static('upload'));
+app.use('/uploads',express.static('uploads'));
 
 //挂载cookie中间件
 app.use(cookieParser());
 //挂载Session中间件
 app.use(session({
-    secret:"keyboard cat",
+    secret:config.secret,
     resave:false,
     saveUninitialized:true
 }));
@@ -29,7 +29,7 @@ app.set("views",path.join(__dirname,"views"));
 app.set('view engine','xtpl');
 
 
-app.locals.config=config;
+app.locals.config=config;//在以后可以通过req.app.locals.config获取相关数据
 
 //加载路由路径
 app.use(require("./router.js"));
@@ -37,7 +37,7 @@ app.use(require("./router.js"));
 //开发环境错误处理中间件
 if(config.debug){
     app.use(function(err,req,res,next){
-        res.end("服务器奔溃"+err);
+        res.end("服务器奔溃"+err.message);
         next();
     })
 }

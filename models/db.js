@@ -1,12 +1,13 @@
 "use strict";
 const mysql=require("mysql");
 var pool = mysql.createPool({
-    connectionLimit: 50,
+    connectionLimit: 20,
     host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: 'root123',
     database: 'blog'
 });
+
 
 exports.query=function(sql,P,C){
     let params=[];
@@ -21,8 +22,9 @@ exports.query=function(sql,P,C){
     }
     pool.getConnection(function(err,connection){
         connection.query(sql,params,function(){
+
             connection.release();
             callback.apply(null,arguments);
         })
     })
-}
+};

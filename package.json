@@ -17,6 +17,7 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "formidable": "^1.0.17",
+    "gm": "^1.21.1",
     "jquery-file-upload-middleware": "^0.1.7",
     "markdown-it": "^6.0.0",
     "moment": "^2.12.0",
